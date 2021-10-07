@@ -1,29 +1,3 @@
 {
-  "todos": [
-    {
-      "name": "gggggggggg",
-      "isComplete": true,
-      "id": 2
-    },
-    {
-      "name": "hhhhhh",
-      "isComplete": true,
-      "id": 3
-    },
-    {
-      "name": "ff",
-      "isComplete": false,
-      "id": 4
-    },
-    {
-      "name": "hhhhhhh",
-      "isComplete": false,
-      "id": 9
-    },
-    {
-      "name": "zzzzzzzzzz",
-      "isComplete": false,
-      "id": 12
-    }
-  ]
+  "todos": []
 }
