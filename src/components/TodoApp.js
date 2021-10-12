@@ -56,7 +56,7 @@ export default class TodoApp extends Component {
   }
 
   render() {
-    const remaining = this.state.todos.filter((t) => !t.isComplete).length;
+    const remaining = () => this.state.todos.filter((t) => !t.isComplete).length;
     return (
       <Router>
         <div>
