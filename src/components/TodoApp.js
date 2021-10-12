@@ -12,7 +12,7 @@ export default class TodoApp extends Component {
 
     this.state = {
       currentTodo: "",
-      todos: {},
+      todos: [],
     };
     this.handleNewTodoChange = this.handleNewTodoChange.bind(this);
     this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
