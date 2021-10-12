@@ -1,12 +1,12 @@
 import axios from "axios";
 
 export const saveTodo = (todo) =>
-  axios.post("http://localhost:3030/api/todos", todo);
+  axios.post("http://localhost:8000/api/task", todo);
 
-export const loadTodos = () => axios.get("http://localhost:3030/api/todos");
+export const loadTodos = () => axios.get("http://localhost:8000/api/tasks");
 
 export const destroyTodo = (id) =>
-  axios.delete(`http://localhost:3030/api/todos/${id}`);
+  axios.delete(`http://localhost:8000/api/task/${id}`);
 
 export const updateTodo = (todo) =>
-  axios.put(`http://localhost:3030/api/todos/${todo.id}`, todo);
+  axios.put(`http://localhost:8000/api/task/${todo.id}`, todo);

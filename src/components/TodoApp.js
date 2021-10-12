@@ -13,6 +13,7 @@ export default class TodoApp extends Component {
     this.state = {
       currentTodo: "",
       todos: [],
+      error: false
     };
     this.handleNewTodoChange = this.handleNewTodoChange.bind(this);
     this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
@@ -22,8 +23,14 @@ export default class TodoApp extends Component {
 
   componentDidMount() {
     loadTodos()
-      .then(({ data }) => this.setState({ todos: data }))
-      .catch(() => this.setState({ error: true }));
+      .then( 
+        ({ data }) => this.setState({ todos: data }),
+        console.log(this.state.todos)
+        )
+      .catch(
+        () => this.setState({ error: true }),
+        console.log(this.state.error)
+        );
   }
 
   handleNewTodoChange(evt) {
