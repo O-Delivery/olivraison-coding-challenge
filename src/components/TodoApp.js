@@ -31,7 +31,6 @@ export default class TodoApp extends Component {
         )
       .catch( () => {
         this.setState({ error: true });
-        // console.log(this.state.error)
       },
       );
   }
@@ -50,15 +49,21 @@ export default class TodoApp extends Component {
 
   handleToggle(id) {
     const targetTodo = this.state.todos.find((t) => t.id === id);
-    console.log('before: ' + targetTodo.isComplete);
     const updated = {
       ...targetTodo,
-      isComplete: !targetTodo.isComplete,
+      isComplete: targetTodo.isComplete == 0 ? 1 : 0,
     };
-    console.log('after: ' + updated.isComplete);
     updateTodo(updated).then(({ data }) => {
-      const todos = this.state.todos.map((t) => (t.id === data.id ? data : t));
-      this.setState({ todos: todos });
+      console.log(data);
+      // const todos = this.state.todos.map((t) => (t.id === data.id ? data : t));
+      // this.setState({ todos: todos });
+      loadTodos()
+          .then( (response) => {
+            this.setState({ todos: response.data });
+          },)
+          .catch( () => {
+            this.setState({ error: true });
+          },);
     });
   }
 
@@ -71,7 +76,7 @@ export default class TodoApp extends Component {
         console.log(response);
         // this.setState( { todos: todos.push(newTodo) });
         this.setState( { currentTodo: "" });
-        
+
         loadTodos()
           .then( (response) => {
             this.setState({ todos: response.data });
@@ -86,9 +91,7 @@ export default class TodoApp extends Component {
   }
 
   render() {
-    // console.log("render() called");
     const remaining = this.state.todos.filter((t) => t.isComplete == '0').length;
-    // console.log(remaining);
     return (
       <Router>
         <div>
