@@ -8,7 +8,6 @@ const TodoItem = (props) => (
         type="checkbox"
         checked={(props.isComplete == 0) ? false : true}
         onChange={() => {
-          console.log('checkbox clicked');
           props.handleToggle(props.id)}}
       />
       <label>{props.taskName}</label>
@@ -22,7 +21,6 @@ const TodoItem = (props) => (
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
-  // console.log(props.todos);
   return (<ul className="todo-list">
     {props.todos.map((todo) => (
       <TodoItem

@@ -25,8 +25,6 @@ export default class TodoApp extends Component {
     loadTodos()
       .then( (response) => {
           this.setState({ todos: response.data });
-          // console.log(response.data);
-          // console.log(this.state.todos[0]);
         },
         )
       .catch( () => {
@@ -55,8 +53,6 @@ export default class TodoApp extends Component {
     };
     updateTodo(updated).then(({ data }) => {
       console.log(data);
-      // const todos = this.state.todos.map((t) => (t.id === data.id ? data : t));
-      // this.setState({ todos: todos });
       loadTodos()
           .then( (response) => {
             this.setState({ todos: response.data });
@@ -70,11 +66,10 @@ export default class TodoApp extends Component {
   handleTodoSubmit(evt) {
     evt.preventDefault();
     const newTodo = { taskName: this.state.currentTodo, isComplete: 0 };
-    const todos = this.state.todos;
     saveTodo(newTodo)
       .then( (response) => {
         console.log(response);
-        // this.setState( { todos: todos.push(newTodo) });
+
         this.setState( { currentTodo: "" });
 
         loadTodos()
