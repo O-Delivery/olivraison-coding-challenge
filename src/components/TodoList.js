@@ -1,7 +1,7 @@
 import React from "react";
 
 const TodoItem = (props) => (
-  <li className={props.isComplete ? "completed" : null}>
+  <li className={props.isComplete == 'true' ? "completed" : null}>
     <div className="view">
       <input
         className="toggle"
@@ -9,7 +9,7 @@ const TodoItem = (props) => (
         checked={props.isComplete}
         onChange={() => props.handleToggle(props.id)}
       />
-      <label>{props.name}</label>
+      <label>{props.taskName}</label>
       <button
         className="destroy"
         onClick={() => props.handleDelete(props.id)}
@@ -19,8 +19,9 @@ const TodoItem = (props) => (
 );
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (props) => (
-  <ul className="todo-list">
+export default (props) => {
+  console.log(props.todos);
+  return (<ul className="todo-list">
     {props.todos.map((todo) => (
       <TodoItem
         key={todo.id}
@@ -30,4 +31,4 @@ export default (props) => (
       />
     ))}
   </ul>
-);
+)};
