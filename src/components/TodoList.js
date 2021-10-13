@@ -21,13 +21,14 @@ const TodoItem = (props) => (
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => (
   <ul className="todo-list">
-    {props.todos.map((todo) => (
-      <TodoItem
-        key={todo.id}
-        {...todo}
-        handleDelete={props.handleDelete}
-        handleToggle={props.handleToggle}
-      />
-    ))}
+    {React.Children.toArray(
+      props.todos.map((todo) => (
+        <TodoItem
+          {...todo}
+          handleDelete={props.handleDelete}
+          handleToggle={props.handleToggle}
+        />
+      ))
+    )}
   </ul>
 );
