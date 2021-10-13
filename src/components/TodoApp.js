@@ -12,7 +12,8 @@ export default class TodoApp extends Component {
 
     this.state = {
       currentTodo: "",
-      todos: {},
+      todos: [],
+      error: false
     };
     this.handleNewTodoChange = this.handleNewTodoChange.bind(this);
     this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
@@ -22,8 +23,14 @@ export default class TodoApp extends Component {
 
   componentDidMount() {
     loadTodos()
-      .then(({ data }) => this.setState({ todos: data }))
-      .catch(() => this.setState({ error: true }));
+      .then( (response) => {
+          this.setState({ todos: response.data });
+        },
+        )
+      .catch( () => {
+        this.setState({ error: true });
+      },
+      );
   }
 
   handleNewTodoChange(evt) {
@@ -42,21 +49,44 @@ export default class TodoApp extends Component {
     const targetTodo = this.state.todos.find((t) => t.id === id);
     const updated = {
       ...targetTodo,
-      isComplete: !targetTodo.isComplete,
+      isComplete: targetTodo.isComplete == 0 ? 1 : 0,
     };
     updateTodo(updated).then(({ data }) => {
-      const todos = this.state.todos.map((t) => (t.id === data.id ? data : t));
-      this.setState({ todos: todos });
+      console.log(data);
+      loadTodos()
+          .then( (response) => {
+            this.setState({ todos: response.data });
+          },)
+          .catch( () => {
+            this.setState({ error: true });
+          },);
     });
   }
 
   handleTodoSubmit(evt) {
     evt.preventDefault();
-    const newTodo = { name: this.state.currentTodo, isComplete: false };
+    const newTodo = { taskName: this.state.currentTodo, isComplete: 0 };
+    saveTodo(newTodo)
+      .then( (response) => {
+        console.log(response);
+
+        this.setState( { currentTodo: "" });
+
+        loadTodos()
+          .then( (response) => {
+            this.setState({ todos: response.data });
+          },)    
+          .catch( () => {
+            this.setState({ error: true });
+          },);
+          },)
+      .catch( () => {
+        this.setState({ error: true });
+      },);
   }
 
   render() {
-    const remaining = this.state.todos.filter((t) => !t.isComplete).length;
+    const remaining = this.state.todos.filter((t) => t.isComplete == '0').length;
     return (
       <Router>
         <div>

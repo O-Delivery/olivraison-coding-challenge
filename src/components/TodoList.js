@@ -1,15 +1,16 @@
 import React from "react";
 
 const TodoItem = (props) => (
-  <li className={props.isComplete ? "completed" : null}>
+  <li className={props.isComplete == '1' ? "completed" : null}>
     <div className="view">
       <input
         className="toggle"
         type="checkbox"
-        checked={props.isComplete}
-        onChange={() => props.handleToggle(props.id)}
+        checked={(props.isComplete == 0) ? false : true}
+        onChange={() => {
+          props.handleToggle(props.id)}}
       />
-      <label>{props.name}</label>
+      <label>{props.taskName}</label>
       <button
         className="destroy"
         onClick={() => props.handleDelete(props.id)}
@@ -19,8 +20,8 @@ const TodoItem = (props) => (
 );
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (props) => (
-  <ul className="todo-list">
+export default (props) => {
+  return (<ul className="todo-list">
     {props.todos.map((todo) => (
       <TodoItem
         key={todo.id}
@@ -30,4 +31,4 @@ export default (props) => (
       />
     ))}
   </ul>
-);
+)};
