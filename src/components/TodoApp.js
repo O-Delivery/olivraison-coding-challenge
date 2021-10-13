@@ -23,13 +23,16 @@ export default class TodoApp extends Component {
 
   componentDidMount() {
     loadTodos()
-      .then( 
-        ([data]) => this.setState({ todos: [data] }),
-        console.log(this.state.todos)
+      .then( (response) => {
+          this.setState({ todos: response.data });
+          console.log(response.data);
+          // console.log(this.state.todos);
+        },
         )
-      .catch(
-        () => this.setState({ error: true }),
+      .catch( () => {
+        this.setState({ error: true });
         console.log(this.state.error)
+      },
         );
   }
 
