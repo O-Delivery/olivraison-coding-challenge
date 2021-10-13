@@ -50,10 +50,12 @@ export default class TodoApp extends Component {
 
   handleToggle(id) {
     const targetTodo = this.state.todos.find((t) => t.id === id);
+    console.log('before: ' + targetTodo.isComplete);
     const updated = {
       ...targetTodo,
       isComplete: !targetTodo.isComplete,
     };
+    console.log('after: ' + updated.isComplete);
     updateTodo(updated).then(({ data }) => {
       const todos = this.state.todos.map((t) => (t.id === data.id ? data : t));
       this.setState({ todos: todos });
@@ -62,12 +64,31 @@ export default class TodoApp extends Component {
 
   handleTodoSubmit(evt) {
     evt.preventDefault();
-    const newTodo = { name: this.state.currentTodo, isComplete: false };
+    const newTodo = { taskName: this.state.currentTodo, isComplete: 0 };
+    const todos = this.state.todos;
+    saveTodo(newTodo)
+      .then( (response) => {
+        console.log(response);
+        // this.setState( { todos: todos.push(newTodo) });
+        this.setState( { currentTodo: "" });
+        
+        loadTodos()
+          .then( (response) => {
+            this.setState({ todos: response.data });
+          },)    
+          .catch( () => {
+            this.setState({ error: true });
+          },);
+          },)
+      .catch( () => {
+        this.setState({ error: true });
+      },);
   }
 
   render() {
-    const remaining = this.state.todos.filter((t) => t.isComplete == 'false').length;
-    console.log(remaining);
+    // console.log("render() called");
+    const remaining = this.state.todos.filter((t) => t.isComplete == '0').length;
+    // console.log(remaining);
     return (
       <Router>
         <div>

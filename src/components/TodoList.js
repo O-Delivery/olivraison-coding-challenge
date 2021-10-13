@@ -1,13 +1,15 @@
 import React from "react";
 
 const TodoItem = (props) => (
-  <li className={props.isComplete == 'true' ? "completed" : null}>
+  <li className={props.isComplete == '1' ? "completed" : null}>
     <div className="view">
       <input
         className="toggle"
         type="checkbox"
-        checked={props.isComplete}
-        onChange={() => props.handleToggle(props.id)}
+        checked={(props.isComplete == 0) ? false : true}
+        onChange={() => {
+          console.log('checkbox clicked');
+          props.handleToggle(props.id)}}
       />
       <label>{props.taskName}</label>
       <button
