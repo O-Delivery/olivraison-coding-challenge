@@ -20,7 +20,7 @@ const TodoItem = (props) => (
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
-  console.log(props.todos);
+  // console.log(props.todos);
   return (<ul className="todo-list">
     {props.todos.map((todo) => (
       <TodoItem

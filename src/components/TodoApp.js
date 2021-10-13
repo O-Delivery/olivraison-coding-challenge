@@ -31,7 +31,7 @@ export default class TodoApp extends Component {
         )
       .catch( () => {
         this.setState({ error: true });
-        console.log(this.state.error)
+        // console.log(this.state.error)
       },
       );
   }
@@ -66,7 +66,8 @@ export default class TodoApp extends Component {
   }
 
   render() {
-    const remaining = () => this.state.todos.filter((t) => !t.isComplete).length;
+    const remaining = this.state.todos.filter((t) => t.isComplete == 'false').length;
+    console.log(remaining);
     return (
       <Router>
         <div>
