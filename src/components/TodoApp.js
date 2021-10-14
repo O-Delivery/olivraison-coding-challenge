@@ -5,6 +5,7 @@ import { saveTodo, loadTodos, destroyTodo, updateTodo } from "../lib/service";
 import { filterTodos } from "../lib/utils";
 import TabsRender from "./Tabs";
 import { AlertContext } from "../context/AlertContext";
+import ThemeButton from "./ThemeButton";
 
 export default function TodoApp1() {
   const [todos, setTodos] = useState([]);
@@ -93,6 +94,7 @@ export default function TodoApp1() {
           )}
         />
       </section>
+      <ThemeButton />
     </Router>
   );
 }

@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import "./styles.css";
-import App from "./components/TodoApp";
 import reportWebVitals from "./reportWebVitals";
-import { AlertProvider } from "./context/AlertContext";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AlertProvider>
-      <App />
-    </AlertProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
