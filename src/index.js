@@ -1,14 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles.css";
 import App from "./components/TodoApp";
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
+import { AlertProvider } from "./context/AlertContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AlertProvider>
+      <App />
+    </AlertProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
