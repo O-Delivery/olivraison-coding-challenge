@@ -1,3 +1,21 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": 0,
+      "taskName": "Todo 1"
+    },
+    {
+      "id": 1,
+      "taskName": "Todo 2"
+    },
+    {
+      "id": 2,
+      "taskName": "Todo 3"
+    },
+    {
+      "taskName": "Ongoing Task",
+      "isComplete": 0,
+      "id": 3
+    }
+  ]
 }
